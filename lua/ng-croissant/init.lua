@@ -40,4 +40,7 @@ M.goto_component_spec = function()
   end
 end
 
+M.get_base = get_base
+M._set_vim = function(vim_mock) vim = vim_mock end
+
 return M
