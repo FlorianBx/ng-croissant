@@ -15,7 +15,7 @@
 
 ## 🚀 Features
 
-- **One key, instant jump:** between `.component.ts`, `.component.html`, and `.component.spec.ts`
+- **One key, instant jump:** between `.component.ts`, `.component.html`, `.component.spec.ts`, `.component.css` and `.component.scss`
 - **Smart pattern matching** (no LSP required)
 - **Lightweight:** 100% Lua, zero dependencies
 - **Works everywhere:** Neovim-ready, dead simple codebase
@@ -40,6 +40,8 @@
     keymap.set("n", "<leader>ac", ng.goto_component_ts,   { desc = "Go to component.ts" })
     keymap.set("n", "<leader>at", ng.goto_component_html, { desc = "Go to component.html" })
     keymap.set("n", "<leader>as", ng.goto_component_spec, { desc = "Go to component.spec.ts" })
+    keymap.set("n", "<leader>acs", ng.goto_component_css, { desc = "Go to component.css" })
+    keymap.set("n", "<leader>asc", ng.goto_component_scss, { desc = "Go to component.scss" })
   end
 }
 ```
@@ -61,6 +63,8 @@ use {
     keymap.set("n", "<leader>ac", ng.goto_component_ts,   { desc = "Go to component.ts" })
     keymap.set("n", "<leader>at", ng.goto_component_html, { desc = "Go to component.html" })
     keymap.set("n", "<leader>as", ng.goto_component_spec, { desc = "Go to component.spec.ts" })
+    keymap.set("n", "<leader>acs", ng.goto_component_css, { desc = "Go to component.css" })
+    keymap.set("n", "<leader>asc", ng.goto_component_scss, { desc = "Go to component.scss" })
   end
 }
 ```
@@ -83,10 +87,12 @@ Just copy, paste, and start coding!
 | `<leader>ac`  | Go to component.ts      |
 | `<leader>at`  | Go to component.html    |
 | `<leader>as`  | Go to component.spec.ts |
+| `<leader>acs`  | Go to component.css    |
+| `<leader>asc`  | Go to component.scss   |
 
 <br />
 
-_Files should follow standard Angular naming: `foo.component.ts`, `foo.component.html`, `foo.component.spec.ts`._
+_Files should follow standard Angular naming: `foo.component.ts`, `foo.component.html`, `foo.component.spec.ts`, `foo.component.css`, `foo.component.scss`._
 
 <br />
 
