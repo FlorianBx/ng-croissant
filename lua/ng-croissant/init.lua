@@ -1,69 +1,29 @@
 local M = {}
 
 local function get_base(filename)
-  -- removes .ts, .html, or .spec.ts at the end to get the common prefix
   return filename:gsub('%.component%.spec%.ts$', '.component')
-                :gsub('%.component%.ts$', '.component')
-                :gsub('%.component%.html$', '.component')
-                :gsub('%.component%.css$', '.component')
-                :gsub('%.component%.scss$', '.component')
+                 :gsub('%.component%.ts$', '.component')
+                 :gsub('%.component%.html$', '.component')
+                 :gsub('%.component%.css$', '.component')
+                 :gsub('%.component%.scss$', '.component')
 end
 
-M.goto_component_ts = function()
+local function goto_component(extension)
   local filename = vim.api.nvim_buf_get_name(0)
   local base = get_base(filename)
-  local ts = base .. '.ts'
-  if vim.fn.filereadable(ts) == 1 then
-    vim.cmd('edit ' .. vim.fn.fnameescape(ts))
+  local target = base .. extension
+  if vim.fn.filereadable(target) == 1 then
+    vim.cmd('edit ' .. vim.fn.fnameescape(target))
   else
-    vim.notify('.ts not found: ' .. ts, vim.log.levels.INFO)
+    vim.notify(extension .. ' not found: ' .. target, vim.log.levels.INFO)
   end
 end
 
-M.goto_component_html = function()
-  local filename = vim.api.nvim_buf_get_name(0)
-  local base = get_base(filename)
-  local html = base .. '.html'
-  if vim.fn.filereadable(html) == 1 then
-    vim.cmd('edit ' .. vim.fn.fnameescape(html))
-  else
-    vim.notify('.html not found: ' .. html, vim.log.levels.INFO)
-  end
-end
-
-M.goto_component_spec = function()
-  local filename = vim.api.nvim_buf_get_name(0)
-  local base = get_base(filename)
-  local spec = base .. '.spec.ts'
-  if vim.fn.filereadable(spec) == 1 then
-    vim.cmd('edit ' .. vim.fn.fnameescape(spec))
-  else
-    vim.notify('.spec.ts not found: ' .. spec, vim.log.levels.INFO)
-  end
-end
-
-M.goto_component_css = function()
-  local filename = vim.api.nvim_buf_get_name(0)
-  local base = get_base(filename)
-  local css = base .. '.css'
-  if vim.fn.filereadable(css) == 1 then
-    vim.cmd('edit ' .. vim.fn.fnameescape(css))
-  else
-    vim.notify('.css not found: ' .. css, vim.log.levels.INFO)
-  end
-end
-
-M.goto_component_scss = function()
-  local filename = vim.api.nvim_buf_get_name(0)
-  local base = get_base(filename)
-  local scss = base .. '.scss'
-  if vim.fn.filereadable(scss) == 1 then
-    vim.cmd('edit ' .. vim.fn.fnameescape(scss))
-  else
-    vim.notify('.scss not found: ' .. scss, vim.log.levels.INFO)
-  end
-end
-
+M.goto_component_ts = function() goto_component('.ts') end
+M.goto_component_html = function() goto_component('.html') end
+M.goto_component_spec = function() goto_component('.spec.ts') end
+M.goto_component_css = function() goto_component('.css') end
+M.goto_component_scss = function() goto_component('.scss') end
 
 M.get_base = get_base
 M._set_vim = function(vim_mock) vim = vim_mock end
