@@ -5,6 +5,8 @@ local function get_base(filename)
   return filename:gsub('%.component%.spec%.ts$', '.component')
                 :gsub('%.component%.ts$', '.component')
                 :gsub('%.component%.html$', '.component')
+                :gsub('%.component%.css$', '.component')
+                :gsub('%.component%.scss$', '.component')
 end
 
 M.goto_component_ts = function()
