@@ -40,6 +40,17 @@ M.goto_component_spec = function()
   end
 end
 
+M.goto_component_css = function()
+  local filename = vim.api.nvim_buf_get_name(0)
+  local base = get_base(filename)
+  local css = base .. '.css'
+  if vim.fn.filereadable(css) == 1 then
+    vim.cmd('edit ' .. vim.fn.fnameescape(css))
+  else
+    vim.notify('.css not found: ' .. css, vim.log.levels.INFO)
+  end
+end
+
 M.get_base = get_base
 M._set_vim = function(vim_mock) vim = vim_mock end
 
