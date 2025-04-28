@@ -51,6 +51,18 @@ M.goto_component_css = function()
   end
 end
 
+M.goto_component_scss = function()
+  local filename = vim.api.nvim_buf_get_name(0)
+  local base = get_base(filename)
+  local scss = base .. '.scss'
+  if vim.fn.filereadable(scss) == 1 then
+    vim.cmd('edit ' .. vim.fn.fnameescape(scss))
+  else
+    vim.notify('.scss not found: ' .. scss, vim.log.levels.INFO)
+  end
+end
+
+
 M.get_base = get_base
 M._set_vim = function(vim_mock) vim = vim_mock end
 
